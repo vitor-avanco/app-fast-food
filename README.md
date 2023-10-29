@@ -29,38 +29,51 @@ Para poder estar instalando essas ferramentas, siga o link de instalação.
    - https://docs.docker.com/desktop/install/mac-install/ [Docker & Docker Composer]
    - https://git-scm.com/download/mac [Git]
 
+---
 
 ## Inicializando a aplicação com o container Docker
 
-> ⚠️ **Atenção!**
->  Verifique se as variáveis de ambiente estão em mãos para poder inicializar corretamente a aplicação para cada ambiente. Certifique de inserir o arquivo .env dentro da **/infra/prod** !
->  Verifique no arquivo ".app/mvnw", se EOL está configurado como "LF". 
+**Atenção!**: Verifique se as variáveis de ambiente estão em mãos para poder inicializar corretamente a aplicação para cada ambiente.
+
+Certifique-se de inserir o arquivo .env dentro da **/infra/prod**
+
+Verifique no arquivo **app/mvnw**, se EOL está configurado como "LF". 
 
 ## Executando o projeto
 
 ### Build de Produção:
-    > ⚠️ **Atenção! Para executar, é necessário estar dentro da raiz do projeto.**
-    Executa a imagem com o jar compilado:
 
-    ```sh
-    docker-compose -f ./infra/prod/docker-compose.yaml up
-    ```
-    Depois de executada, a aplicação estará disponível para uso em: http://localhost:8080/swagger-ui/index.html#/
-    Se desejar, é possível também, realizar as chamadas via Postman, Insomnia ou outro app desejado, utilizando a Collection ("AppFastFood.postman_collection") disponível na raíz do projeto.
+Para executar, é necessário estar dentro da raiz do projeto.
+Execute a imagem com o jar compilado:
 
-    > Como inserir informações na aplicação:
-      - **Opcional** Criar Clientes,
-      - Cadastrar Produtos,
-      - Criar Pedidos.
-      Não é possível criar um pedido, caso não exista produtos cadastrados.
+```sh
+docker-compose -f ./infra/prod/docker-compose.yaml up
+```
+
+Depois de executada, a aplicação estará disponível para uso em: http://localhost:8080/swagger-ui/index.html#/
+
+---
+
+**Utilize a Collection ("AppFastFood.postman_collection") disponível na raíz do projeto para interagir com a aplicação**
+
+*Inserir informações na aplicação:*
+
+- Criar Clientes
+- Cadastrar Produtos
+- Criar Pedidos
+
+**Não é possível criar um pedido, caso não exista produtos cadastrados.**
+
+---
 
 ### Build de Desenvolvimento
-    > ⚠️ **Atenção! Para executar, é necessário estar dentro da raiz do projeto.**
-    Esse comando compila o código java, executa o jar do monolito e gera uma imagem nova, usem quando forem testar alteracoes do codigo:
+Para executar, é necessário estar dentro da raiz do projeto.
 
-    ```sh
-    docker-compose -f ./infra/dev/docker-compose.yaml up 
-    ```
+Esse comando compila o código java, executa o jar do monolito e gera uma imagem nova, usem quando forem testar alteracoes do codigo:
+
+```sh
+docker-compose -f ./infra/dev/docker-compose.yaml up 
+```
 
 ### Inicializando a aplicação sem o container
 
@@ -69,6 +82,8 @@ Para poder estar rodando em maquina local sem o container docker e sem o Postgre
 - Maven
 - Lombok
 
+---
+
 #### Baixando as dependência
 Comando para baixar as dependências do Maven:
 ```sh
@@ -76,6 +91,8 @@ mvn clean install
 ```
 
 Após o sucesso a da instalação, poderá inicializar a aplicação!
+
+---
 
 ## Desenvolvedores
  - Caio Cezar Santos Rodrigues
