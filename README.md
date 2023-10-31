@@ -31,14 +31,6 @@ Para poder estar instalando essas ferramentas, siga o link de instalação.
 
 ---
 
-## Inicializando a aplicação com o container Docker
-
-**Atenção!**: Verifique se as variáveis de ambiente estão em mãos para poder inicializar corretamente a aplicação para cada ambiente.
-
-Certifique-se de inserir o arquivo .env dentro da **/infra/prod**
-
-Verifique no arquivo **app/mvnw**, se EOL está configurado como "LF". 
-
 ## Executando o projeto
 
 ### Build de Produção:
@@ -50,17 +42,7 @@ Execute a imagem com o jar compilado:
 docker-compose -f ./infra/prod/docker-compose.yaml up
 ```
 
-Depois de executada, a aplicação estará disponível para uso em: http://localhost:8080/swagger-ui/index.html#/
-
----
-
-**Utilize a Collection ("AppFastFood.postman_collection.json") disponível na raíz do projeto para interagir com a aplicação**
-
-*Inserir informações na aplicação:*
-
-- Criar Clientes
-- Cadastrar Produtos
-- Criar Pedidos
+Depois de executada, a aplicação estará disponível para uso em: http://localhost:8080/swagger-ui/index.html#/ ou itilizando a collection "AppFastFood.postman_collection.json" disponível na raíz do projeto.
 
 **Não é possível criar um pedido, caso não exista produtos cadastrados.**
 
