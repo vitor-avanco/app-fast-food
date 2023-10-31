@@ -54,7 +54,7 @@ Depois de executada, a aplicação estará disponível para uso em: http://local
 
 ---
 
-**Utilize a Collection ("AppFastFood.postman_collection") disponível na raíz do projeto para interagir com a aplicação**
+**Utilize a Collection ("AppFastFood.postman_collection.json") disponível na raíz do projeto para interagir com a aplicação**
 
 *Inserir informações na aplicação:*
 
@@ -77,7 +77,7 @@ docker-compose -f ./infra/dev/docker-compose.yaml up
 
 ### Inicializando a aplicação sem o container
 
-Para poder estar rodando em maquina local sem o container docker e sem o Postgres, pois estará utiliza o banco H2. Deve realizar a instalação das seguintes ferramentas:
+Para poder estar rodando em maquina local sem o container docker e sem o PostgreSQL, pois estará utiliza o banco H2. Deve realizar a instalação das seguintes ferramentas:
 - Amazon Corretto 17 JDK
 - Maven
 - Lombok
