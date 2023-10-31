@@ -1,6 +1,6 @@
 services:
   app-fastfood:
-    image: mvgv/appfastfood:1.0.3
+    image: vitoravanco2201/appfastfood:1.0.0
     networks:
       - techchallenge-fastfood-net
     ports:
