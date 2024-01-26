@@ -1,0 +1,41 @@
+services:
+  app-fastfood:
+    image: vitoravanco/appfastfood:2.0.0
+    networks:
+      - techchallenge-fastfood-net
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=${AMBIENTE}
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PW}
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"
+    depends_on:
+      - postgres
+    scale: 1
+
+  postgres:
+    container_name: postgres_prod
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PW}
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - techchallenge-fastfood-net
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  pgadmin:
+networks:
+  techchallenge-fastfood-net:
+    driver: bridge
+  postgres:
+    driver: bridge
