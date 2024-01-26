@@ -1,0 +1,652 @@
+{
+	"info": {
+		"_postman_id": "8884e1b4-7e5d-48bf-ad96-31adbbea3698",
+		"name": "Api AppFastFood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4093047",
+		"_collection_link": "https://www.postman.com/vitor-avanco/workspace/appfastfoodpublic/collection/4093047-8884e1b4-7e5d-48bf-ad96-31adbbea3698?action=share&source=collection_link&creator=4093047"
+	},
+	"item": [
+		{
+			"name": "[01 - Novo Cadastro] /clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.globals.set(\"CPF_JA_CADASTRADO\",jsonData.cpf);\r",
+							"pm.globals.set(\"id_cliente\",jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"host\", \"http://localhost:8080\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Ze Vitor Avanco\",\r\n    \"cpf\": \"12312312343\",\r\n    \"telefone\": \"11987879090\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/clientes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[02 - Cadastro já existente] /clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Ze Vitor Avanco\",\r\n    \"cpf\": \"{{CPF_JA_CADASTRADO}}\",\r\n    \"telefone\": \"11987879090\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/clientes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[03 - Info do Cliente] /clientes/:cpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/clientes/{{CPF_JA_CADASTRADO}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"clientes",
+						"{{CPF_JA_CADASTRADO}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[04 - Listar Produtos] /produtos/:categoria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/produtos/lanche",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"produtos",
+						"lanche"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[05 - Cadastro Produto] /produtos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.globals.set(\"id_produto_cadastrado\",jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"nome\": \"Big Mac\",\r\n\t\"categoria\": \"LANCHE\",\r\n\t\"preco\": 31,\r\n\t\"descricao\": \"Dois hambúrgueres (100% carne bovina), alface americana, queijo sabor cheddar, molho especial, cebola, picles e pão com gergelim.\",\r\n\t\"imagem\": \"https://s7d1.scene7.com/is/image/mcdonalds/Header_BigMac_832x472:product-header-desktop?wid=830&hei=456&dpr=off\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/produtos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[06 - Editar Produto] /produtos/:id_produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"nome\": \"Super Big Mac\",\r\n\t\"categoria\": \"LANCHE\",\r\n\t\"preco\": 11,\r\n\t\"descricao\": \"Dois hambúrgueres (100% carne bovina), alface americana, queijo sabor cheddar, molho especial, cebola, picles e pão com gergelim.\",\r\n\t\"imagem\": \"https://s7d1.scene7.com/is/image/mcdonalds/Header_BigMac_832x472:product-header-desktop?wid=830&hei=456&dpr=off\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/produtos/{{id_produto_cadastrado}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"produtos",
+						"{{id_produto_cadastrado}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[07 - Deletar Produto] /produtos/:id_produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"nome\": \"Super Big Mac\",\r\n\t\"categoria\": \"LANCHE\",\r\n\t\"preco\": 11,\r\n\t\"descricao\": \"Dois hambúrgueres (100% carne bovina), alface americana, queijo sabor cheddar, molho especial, cebola, picles e pão com gergelim.\",\r\n\t\"imagem\": \"https://s7d1.scene7.com/is/image/mcdonalds/Header_BigMac_832x472:product-header-desktop?wid=830&hei=456&dpr=off\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/produtos/{{id_produto_cadastrado}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"produtos",
+						"{{id_produto_cadastrado}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[08 - Cadastro já existente] /clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Ze Vitor Avanco\",\r\n    \"cpf\": \"{{CPF_JA_CADASTRADO}}\",\r\n    \"telefone\": \"11987879090\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/clientes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[09 - Info do Cliente] /clientes/:cpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/clientes/{{CPF_JA_CADASTRADO}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"clientes",
+						"{{CPF_JA_CADASTRADO}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[10 - Listar Pedidos] /pedidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pedidos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pedidos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Status: RECEBIDO",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedidos?status=RECEBIDO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "RECEBIDO"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Status: FINALIZADO",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedidos?status=FINALIZADO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "FINALIZADO"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Status: PRONTO",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedidos?status=PRONTO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PRONTO"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Status: EM_PREPARACAO",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/pedidos?status=EM_PREPARACAO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "EM_PREPARACAO"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "[11 - Efetuar Pedido] /pedidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.globals.set(\"id_pedido_efetuado\",jsonData.id);\r",
+							"pm.globals.set(\"id_pagamento\",jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"clienteId\": \"{{id_cliente}}\",\r\n\t\"itens\": [\r\n\t\t{\r\n\t\t\t\"produtoId\": \"{{id_produto_cadastrado}}\",\r\n\t\t\t\"quantidade\": 2\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/pedidos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[12 - Status Pagamento] /pagamentos/:id_pedido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pagamentos/{{id_pedido_efetuado}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pagamentos",
+						"{{id_pedido_efetuado}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[13 - Weebhook Pagamento] /pagamentos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": \"\",\r\n\t\"live_mode\": \"\",\r\n\t\"type\": \"\",\r\n\t\"date_created\": \"\",\r\n\t\"user_id\": \"\",\r\n\t\"api_version\": \"\",\r\n\t\"action\": \"payment.created\",\r\n\t\"data\": {\r\n\t\t\"id\": \"{{id_pagamento}}\"\r\n\t}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/pagamentos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[14 - Atualiza Status Pedido] /pedidos/:id_pedido/:status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": \"\",\r\n\t\"live_mode\": \"\",\r\n\t\"type\": \"\",\r\n\t\"date_created\": \"\",\r\n\t\"user_id\": \"\",\r\n\t\"api_version\": \"\",\r\n\t\"action\": \"payment.created\",\r\n\t\"data\": {\r\n\t\t\"id\": \"{{id_pagamento}}\"\r\n\t}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/pedidos/:id_pedido/:status",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pedidos",
+						":id_pedido",
+						":status"
+					],
+					"variable": [
+						{
+							"key": "id_pedido",
+							"value": ""
+						},
+						{
+							"key": "status",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "[05 - Atualiza Status Pedido] /pedidos/:id_pedido/PRONTO",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"\",\r\n\t\"live_mode\": \"\",\r\n\t\"type\": \"\",\r\n\t\"date_created\": \"\",\r\n\t\"user_id\": \"\",\r\n\t\"api_version\": \"\",\r\n\t\"action\": \"payment.created\",\r\n\t\"data\": {\r\n\t\t\"id\": \"{{id_pagamento}}\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedidos/{{id_pedido_efetuado}}/PRONTO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos",
+								"{{id_pedido_efetuado}}",
+								"PRONTO"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "[05 - Atualiza Status Pedido] /pedidos/:id_pedido/FINALIZADO",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"\",\r\n\t\"live_mode\": \"\",\r\n\t\"type\": \"\",\r\n\t\"date_created\": \"\",\r\n\t\"user_id\": \"\",\r\n\t\"api_version\": \"\",\r\n\t\"action\": \"payment.created\",\r\n\t\"data\": {\r\n\t\t\"id\": \"{{id_pagamento}}\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/pedidos/{{id_pedido_efetuado}}/FINALIZADO",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"pedidos",
+								"{{id_pedido_efetuado}}",
+								"FINALIZADO"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
