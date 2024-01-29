@@ -16,6 +16,13 @@ spec:
         - name: appfastfood
           image: vitoravanco/appfastfood:2.0.0
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
           ports:
             - containerPort: 8080
           envFrom:

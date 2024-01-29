@@ -1,6 +1,18 @@
 # Aplicação Fast Food
 Tech Challenge POSTECH FIAP
 
+**Diagrama**
+
+https://app.diagrams.net/#G1jbIrDPWH3BY4NgY_mvSWEC9SoYqx3zQu
+
+---
+**Video do Projeto funcionando**
+
+https://www.youtube.com/watch?v=uQ2c_eYHDds&ab_channel=VitorAvanco
+
+---
+
+
 ## Stack
 - Java 17
 - Spring Boot
@@ -8,6 +20,7 @@ Tech Challenge POSTECH FIAP
 - Maven
 - Postgres
 - Swagger
+- K8S
     
 
 ## Tools
@@ -39,12 +52,17 @@ Para levantar a API junto com o banco de dados Postgres, execute na pasta raiz:
 kubectl apply -f infra/kubernetes
 ```
 
-**Importante**
-Caso utilize Docker Desktop é necessário habilitar o Kubernetes nas configurações.
+**Importante: Caso utilize Docker Desktop é necessário habilitar o Kubernetes nas configurações.**
 
-Depois de executada, a aplicação estará disponível para uso em: http://localhost:8080/swagger-ui/index.html#/
+Depois de executada, a aplicação estará disponível para uso em: 
 
-Endpoint de Health: http://localhost:8080/healthCheck
+http://localhost:8080/swagger-ui/index.html#/
+
+--
+
+Endpoint de Health: 
+
+http://localhost:8080/healthCheck
 
 ---
 
