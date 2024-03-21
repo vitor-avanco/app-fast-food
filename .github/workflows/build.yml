@@ -215,5 +215,4 @@ jobs:
 
       - name: Apply changes
         run: |
-            kubectl config view
-            kubectl apply -f kubernetes
+            kubectl apply -f infra/k8s
