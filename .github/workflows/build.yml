@@ -212,4 +212,5 @@ jobs:
 
       - name: Apply changes
         run: |
-          kubectl apply -f kubernetes
+            kubectl config view
+            kubectl apply -f kubernetes
