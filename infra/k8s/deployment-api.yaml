@@ -27,7 +27,7 @@ spec:
             cpu: "2000m"
         env: 
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://fiap-food-api.czii2yyoe43y.us-east-1.rds.amazonaws.com/fiap_food_api
+          value: jdbc:postgresql://fiap-food-api.c3es24iaqo3b.us-east-1.rds.amazonaws.com/fiap_food_api
         - name: SPRING_DATASOURCE_USERNAME
           value: dbuser
         - name: SPRING_DATASOURCE_PASSWORD
